@@ -10,14 +10,14 @@ use Irssi;
 use vars qw($VERSION %IRSSI);
 use HTML::Entities;
 
-$VERSION = "0.5";
+$VERSION = "0.6";
 %IRSSI = (
-    authors     => 'Luke Macken, Paul W. Frields',
-    contact     => 'lewk@csh.rit.edu, stickster@gmail.com',
+    authors     => 'Luke Macken, Paul W. Frields, hashworks',
+    contact     => 'lewk@csh.rit.edu, stickster@gmail.com, admin@hashworks.net',
     name        => 'notify.pl',
     description => 'Use D-Bus to alert user to hilighted messages',
     license     => 'GNU General Public License v3',
-    url         => 'http://code.google.com/p/irssi-libnotify',
+    url         => 'https://github.com/hashworks/irssi-libnotify',
 );
 
 Irssi::settings_add_str('notify', 'notify_remote', '');
