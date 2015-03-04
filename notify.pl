@@ -16,7 +16,7 @@ $VERSION = "0.5";
     contact     => 'lewk@csh.rit.edu, stickster@gmail.com',
     name        => 'notify.pl',
     description => 'Use D-Bus to alert user to hilighted messages',
-    license     => 'GNU General Public License',
+    license     => 'GNU General Public License v3',
     url         => 'http://code.google.com/p/irssi-libnotify',
 );
 
