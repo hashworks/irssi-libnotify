@@ -7,7 +7,7 @@
 
 use strict;
 use Irssi;
-use vars qw($VERSION %IRSSI);
+use vars qw($VERSION %IRSSI $runTime);
 use HTML::Entities;
 
 $VERSION = "0.6";
@@ -20,9 +20,12 @@ $VERSION = "0.6";
 	url		 => 'https://github.com/hashworks/irssi-libnotify',
 );
 
+$runTime = time;
+
 Irssi::settings_add_str('notify', 'notify_remote', '');
 Irssi::settings_add_str('notify', 'notify_sh_path', './irssi-notifier.sh');
 Irssi::settings_add_str('notify', 'notify_debug', '');
+Irssi::settings_add_str('notify', 'notify_start_offset', '0');
 
 sub sanitize {
 	my ($text) = @_;
@@ -37,6 +40,11 @@ sub sanitize {
 }
 
 sub notify {
+
+	if (time - $runTime <= Irssi::settings_get_str('notify_start_offset')) {
+		return;
+	}
+
 	my ($server, $summary, $message) = @_;
 
 	# Make the message entity-safe

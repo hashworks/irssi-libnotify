@@ -1,7 +1,9 @@
 # irssi-libnotify
 
 This is a fork of [stickster's irssi-libnotify](http://code.google.com/p/irssi-libnotify/).<br/>
-Currently the only difference is a new configuration variable to set the path of `irssi-notifier.sh`.
+The only difference are more configuration variables:
+* notify_sh_path - set the path of `irssi-notifier.sh`
+* notify_start_offset - disable notifications for X seconds after load, defaults to 0
 
 irssi-libnotify is a slightly nicer D-Bus approach that plays nicely with the GNOME Shell's notification area.  If you are looking for the older, simpler version using libnotify, simply check out the old-libnotify branch instead.
 
@@ -22,7 +24,7 @@ To make this script work better for people who use irssi remotely via SSH (often
 2. Excecute `notify-listener.py` when your desktop environment is loaded.
 3. Link `notify.pl` to `$HOME/.irssi/scripts/` (or `$HOME/.irssi/scripts/autorun/`).
 4. Set the path of `irssi-notifier.sh` by `/SET notify_sh_path <path>`
-4. Load the script by `/load notify.pl` or `/load autorun/notify.pl`
+5. Load the script by `/load notify.pl` or `/load autorun/notify.pl`
 
 If you are running irssi remotely, currently your remote machine account would need to be able to SSH back to your local box without a passphrase.  You'll need to set that up yourself, using 'ssh-copy-id' or another method.
 <br/><br/>
