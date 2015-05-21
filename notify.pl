@@ -7,7 +7,7 @@
 
 use strict;
 use Irssi;
-use vars qw($VERSION %IRSSI $runTime);
+use vars qw($VERSION %IRSSI $connectTime);
 use HTML::Entities;
 
 $VERSION = "0.6";
@@ -20,7 +20,7 @@ $VERSION = "0.6";
 	url		 => 'https://github.com/hashworks/irssi-libnotify',
 );
 
-$runTime = time;
+$connectTime = time;
 
 Irssi::settings_add_str('notify', 'notify_remote', '');
 Irssi::settings_add_str('notify', 'notify_sh_path', './irssi-notifier.sh');
@@ -41,7 +41,7 @@ sub sanitize {
 
 sub notify {
 
-	if (time - $runTime <= Irssi::settings_get_str('notify_start_offset')) {
+	if (time - $connectTime <= Irssi::settings_get_str('notify_start_offset')) {
 		return;
 	}
 
@@ -89,6 +89,10 @@ sub print_text_notify {
 	notify($server, $summary, $stripped);
 }
 
+sub server_connected {
+	$connectTime = time;	
+}
+
 sub message_private_notify {
 	my ($server, $msg, $nick, $address) = @_;
 
@@ -105,6 +109,6 @@ sub dcc_request_notify {
 }
 
 Irssi::signal_add('print text', 'print_text_notify');
+Irssi::signal_add ('server connected', 'server_connected');
 Irssi::signal_add('message private', 'message_private_notify');
 Irssi::signal_add('dcc request', 'dcc_request_notify');
-
